@@ -51,7 +51,7 @@ No se guardan credenciales en el repositorio: la autenticación es interactiva.
 ## Modelado
 
 - **Separación temporal**: entrenamiento con cohortes antiguas y prueba con el 20% más reciente, dejando una brecha de 60 días para que las etiquetas de entrenamiento no usen información del período de prueba.
-- **Modelos**: azar (tasa base), regresión logística (referencia), HistGradientBoosting y LightGBM. Se elige el de mayor PR AUC en prueba y se reentrena con todos los clientes con ventana completa.
+- **Modelos**: azar (tasa base), regresión logística (referencia), regla simple de una variable (días entre registro y primera compra), HistGradientBoosting y LightGBM. Se elige el de mayor PR AUC en prueba y se reentrena con todos los clientes con ventana completa.
 - **Métricas**: PR AUC (principal, por el desbalance) y precision, recall, F1 y lift en el top 5/10/20% de clientes.
 
 ## Reproducibilidad
