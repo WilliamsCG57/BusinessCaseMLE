@@ -29,7 +29,7 @@ UNION ALL
 SELECT 'B4_events_sin_user (anonimos)', COUNTIF(user_id IS NULL)
 FROM `bussiness-case-tyc.bussiness_case_ecommerce.events`
 
--- C. Registros sin correspondencia
+-- C. Registros huérfanos: registros sin correspondencia entre tablas (integridad referencial), por ejemplo ítems sin orden.
 UNION ALL
 SELECT 'C1_orders_sin_user', COUNT(*)
 FROM `bussiness-case-tyc.bussiness_case_ecommerce.orders` o
@@ -52,7 +52,7 @@ LEFT JOIN (SELECT DISTINCT order_id FROM `bussiness-case-tyc.bussiness_case_ecom
   ON o.order_id = i.order_id
 WHERE i.order_id IS NULL
 
--- D. Consistencia entre tablas
+-- D. Consistencia entre tablas: por ejemplo, que num_of_item cuadre con el conteo real de ítems.
 UNION ALL
 SELECT 'D1_item_user_distinto_a_orden', COUNT(*)
 FROM `bussiness-case-tyc.bussiness_case_ecommerce.order_items` i
